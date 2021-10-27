@@ -1,9 +1,11 @@
 package com.storage;
 
 import com.utils.Config;
+import com.utils.Privilege;
 import com.utils.User;
 
 import java.io.File;
+import java.util.List;
 
 public abstract class Storage {
 
@@ -23,6 +25,26 @@ public abstract class Storage {
         saveConfig(path + "/" + storageName, config);
         saveUsers(path + "/" + storageName, users);
 
+    }
+
+    public void addUser(String name, String password, Privilege privilege) {
+        if(User.getUser().getPrivilege() != Privilege.ADMIN){
+            return;
+        }
+
+        File users = getUsers(Config.getConfig().getPath());
+        // TODO - uneti novog user-a u users.json
+        saveUsers(Config.getConfig().getPath(), users);
+    }
+
+    public void configure(String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) {
+        if(User.getUser().getPrivilege() != Privilege.ADMIN){
+            return;
+        }
+
+        File config = getConfig(Config.getConfig().getPath());
+        // TODO - korigovati config.json u zavisnosti od parametara
+        Config.getConfig().changeConfig(maxSize, maxNumOfFiles, unsupportedFiles);
     }
 
     public void logToStorage(String path, String name, String password) {

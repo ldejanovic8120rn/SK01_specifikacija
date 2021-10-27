@@ -9,9 +9,10 @@ import java.util.List;
 
 public class Config {
 
+    private String path;
     private String admin;
     private String maxSize;
-    private int maxNumOfFiles;
+    private String maxNumOfFiles;
     private List<String> unsupportedFiles;
 
     private Config() {}
@@ -24,18 +25,42 @@ public class Config {
         return ConfigHolder.config;
     }
 
-    public void initConfig(String admin, String maxSize, int maxNumOfFiles, List<String> unsupportedFiles) {
+    public void initConfig(String path, String admin, String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) {
+        this.path = path;
         this.admin = admin;
         this.maxSize = maxSize;
         this.maxNumOfFiles = maxNumOfFiles;
         this.unsupportedFiles = new ArrayList<>(unsupportedFiles);
     }
 
+    public void changeConfig(String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) throws NumberFormatException{
+        if (maxSize != null) {
+            Double.parseDouble(maxSize);
+            this.maxSize = maxSize;
+        }
+        if(maxNumOfFiles != null){
+            Double.parseDouble(maxNumOfFiles);
+            this.maxNumOfFiles = maxNumOfFiles;
+        }
+        if(unsupportedFiles != null){
+            this.unsupportedFiles.addAll(unsupportedFiles);
+        }
+    }
+
     public void resetConfig() {
+        path = "";
         admin = "";
         maxSize = "";
-        maxNumOfFiles = 0;
+        maxNumOfFiles = "";
         unsupportedFiles = new ArrayList<>();
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getAdmin() {
@@ -54,11 +79,11 @@ public class Config {
         this.maxSize = maxSize;
     }
 
-    public int getMaxNumOfFiles() {
+    public String getMaxNumOfFiles() {
         return maxNumOfFiles;
     }
 
-    public void setMaxNumOfFiles(int maxNumOfFiles) {
+    public void setMaxNumOfFiles(String maxNumOfFiles) {
         this.maxNumOfFiles = maxNumOfFiles;
     }
 }
