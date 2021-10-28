@@ -1,6 +1,6 @@
 package com.storage;
 
-import com.utils.Config;
+import com.utils.StorageInfo;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public abstract class Create {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
 
         if (path == null || path.equals("")){  //ako korisnik ne zada path, smesta se u root dir
-            saveDirectory(Config.getConfig().getPath(), directoryName);
+            saveDirectory(StorageInfo.getStorageInfo().getConfig().getPath(), directoryName);
         }
         else {
             saveDirectory(path, directoryName);
@@ -26,7 +26,7 @@ public abstract class Create {
 
         if (path == null || path.equals("")) {  //ako korisnik ne zada path, smesta se u root dir
             for (String directoryName: directoryNames) {
-                saveDirectory(Config.getConfig().getPath(), directoryName);
+                saveDirectory(StorageInfo.getStorageInfo().getConfig().getPath(), directoryName);
             }
         }
         else {
@@ -40,7 +40,7 @@ public abstract class Create {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
 
         if (path == null || path.equals("")) {  //ako korisnik ne zada path, smesta se u root dir
-            saveFile(Config.getConfig().getPath(), fileName);
+            saveFile(StorageInfo.getStorageInfo().getConfig().getPath(), fileName);
         }
         else {
             saveFile(path, fileName);
@@ -52,7 +52,7 @@ public abstract class Create {
 
         if (path == null || path.equals("")) {  //ako korisnik ne zada path, smesta se u root dir
             for (String fileName: fileNames) {
-                saveFile(Config.getConfig().getPath(), fileName);
+                saveFile(StorageInfo.getStorageInfo().getConfig().getPath(), fileName);
             }
         }
         else {

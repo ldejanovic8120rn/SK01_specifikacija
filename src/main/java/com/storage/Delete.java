@@ -1,6 +1,6 @@
 package com.storage;
 
-import com.utils.Config;
+import com.utils.StorageInfo;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public abstract class Delete {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
 
         if (path == null || path.equals("")){  //ako korisnik ne zada path, brise se iz root dir
-            deleteDirectory(Config.getConfig().getPath(), directoryName);
+            deleteDirectory(StorageInfo.getStorageInfo().getConfig().getPath(), directoryName);
         }
         else {
             deleteDirectory(path, directoryName);
@@ -26,7 +26,7 @@ public abstract class Delete {
 
         if (path == null || path.equals("")) {  //ako korisnik ne zada path, brise se iz root dir
             for (String directoryName: directoryNames) {
-                deleteDirectory(Config.getConfig().getPath(), directoryName);
+                deleteDirectory(StorageInfo.getStorageInfo().getConfig().getPath(), directoryName);
             }
         }
         else {
@@ -40,7 +40,7 @@ public abstract class Delete {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
 
         if (path == null || path.equals("")) {  //ako korisnik ne zada path, brise se iz root dir
-            deleteFile(Config.getConfig().getPath(), fileName);
+            deleteFile(StorageInfo.getStorageInfo().getConfig().getPath(), fileName);
         }
         else {
             deleteFile(path, fileName);
@@ -52,7 +52,7 @@ public abstract class Delete {
 
         if (path == null || path.equals("")){  //ako korisnik ne zada path, brise se iz root dir
             for (String fileName: fileNames) {
-                deleteFile(Config.getConfig().getPath(), fileName);
+                deleteFile(StorageInfo.getStorageInfo().getConfig().getPath(), fileName);
             }
         }
         else {
@@ -64,6 +64,6 @@ public abstract class Delete {
 
     public void removeAll() {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
-        deleteAll(Config.getConfig().getPath());
+        deleteAll(StorageInfo.getStorageInfo().getConfig().getPath());
     }
 }
