@@ -1,5 +1,6 @@
 package com.storage;
 
+import com.utils.Privilege;
 import com.utils.StorageInfo;
 
 import java.util.List;
@@ -10,8 +11,10 @@ public abstract class Create {
     public abstract void saveDirectory(String path, String directoryName);
     public abstract void saveFile(String path, String fileName);
 
-    public void createDirectory(String path, String directoryName) {
-        // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
+    public void createDirectory(String path, String directoryName) throws Exception {
+        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
+            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+        }
 
         if (path == null || path.equals("")){  //ako korisnik ne zada path, smesta se u root dir
             saveDirectory(StorageInfo.getStorageInfo().getConfig().getPath(), directoryName);
@@ -21,8 +24,10 @@ public abstract class Create {
         }
     }
 
-    public void createDirectories(String path, List<String> directoryNames) {
-        // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
+    public void createDirectories(String path, List<String> directoryNames) throws Exception {
+        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
+            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+        }
 
         if (path == null || path.equals("")) {  //ako korisnik ne zada path, smesta se u root dir
             for (String directoryName: directoryNames) {
@@ -36,8 +41,10 @@ public abstract class Create {
         }
     }
 
-    public void createFile(String path, String fileName) {
-        // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
+    public void createFile(String path, String fileName) throws Exception {
+        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
+            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+        }
 
         if (path == null || path.equals("")) {  //ako korisnik ne zada path, smesta se u root dir
             saveFile(StorageInfo.getStorageInfo().getConfig().getPath(), fileName);
@@ -47,8 +54,10 @@ public abstract class Create {
         }
     }
 
-    public void createFiles(String path, List<String> fileNames) {
-        // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
+    public void createFiles(String path, List<String> fileNames) throws Exception {
+        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
+            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+        }
 
         if (path == null || path.equals("")) {  //ako korisnik ne zada path, smesta se u root dir
             for (String fileName: fileNames) {

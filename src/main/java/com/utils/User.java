@@ -6,19 +6,19 @@ public class User {
     private String password;
     private Privilege privilege;
 
+    public User() {
+        name = "";
+        privilege = null;
+    }
+
     public User(String name, String password, Privilege privilege) {
         this.name = name;
         this.password = password;
         this.privilege = privilege;
     }
 
-    public void resetUser() {
-        name = "";
-        privilege = null;
-    }
-
     public boolean isLogged() {
-        return !name.equals("") && privilege != null;
+        return !name.equals("") && !password.equals("") && privilege != null;
     }
 
     public String getName() {

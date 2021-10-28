@@ -1,5 +1,6 @@
 package com.storage;
 
+import com.utils.Privilege;
 import com.utils.StorageInfo;
 
 import java.util.List;
@@ -10,8 +11,10 @@ public abstract class Delete {
     public abstract void deleteFile(String path, String fileName);
     public abstract void deleteAll(String rootPath);
 
-    public void removeDirectory(String path, String directoryName) {
-        // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
+    public void removeDirectory(String path, String directoryName) throws Exception {
+        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
+            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+        }
 
         if (path == null || path.equals("")){  //ako korisnik ne zada path, brise se iz root dir
             deleteDirectory(StorageInfo.getStorageInfo().getConfig().getPath(), directoryName);
@@ -21,8 +24,10 @@ public abstract class Delete {
         }
     }
 
-    public void removeDirectories(String path, List<String> directoryNames) {
-        // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
+    public void removeDirectories(String path, List<String> directoryNames) throws Exception {
+        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
+            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+        }
 
         if (path == null || path.equals("")) {  //ako korisnik ne zada path, brise se iz root dir
             for (String directoryName: directoryNames) {
@@ -36,8 +41,10 @@ public abstract class Delete {
         }
     }
 
-    public void removeFile(String path, String fileName) {
-        // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
+    public void removeFile(String path, String fileName) throws Exception {
+        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
+            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+        }
 
         if (path == null || path.equals("")) {  //ako korisnik ne zada path, brise se iz root dir
             deleteFile(StorageInfo.getStorageInfo().getConfig().getPath(), fileName);
@@ -47,10 +54,12 @@ public abstract class Delete {
         }
     }
 
-    public void removeFiles(String path, List<String> fileNames) {
-        // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
+    public void removeFiles(String path, List<String> fileNames) throws Exception {
+        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
+            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+        }
 
-        if (path == null || path.equals("")){  //ako korisnik ne zada path, brise se iz root dir
+        if (path == null || path.equals("")) {  //ako korisnik ne zada path, brise se iz root dir
             for (String fileName: fileNames) {
                 deleteFile(StorageInfo.getStorageInfo().getConfig().getPath(), fileName);
             }
@@ -62,8 +71,11 @@ public abstract class Delete {
         }
     }
 
-    public void removeAll() {
-        // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
+    public void removeAll() throws Exception {
+        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
+            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+        }
+
         deleteAll(StorageInfo.getStorageInfo().getConfig().getPath());
     }
 }

@@ -15,12 +15,20 @@ public class Config {
     private String maxNumOfFiles;
     private List<String> unsupportedFiles;
 
+    public Config() {
+        path = "";
+        admin = "";
+        maxSize = "";
+        maxNumOfFiles = "";
+        unsupportedFiles = new ArrayList<>();
+    }
+
     public Config(String path, String admin, String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) {
         this.path = path;
         this.admin = admin;
         this.maxSize = maxSize;
         this.maxNumOfFiles = maxNumOfFiles;
-        this.unsupportedFiles = unsupportedFiles;
+        this.unsupportedFiles = new ArrayList<>(unsupportedFiles);
     }
 
     public void changeConfig(String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) throws NumberFormatException {
@@ -35,14 +43,6 @@ public class Config {
         if(unsupportedFiles != null){
             this.unsupportedFiles.addAll(unsupportedFiles);
         }
-    }
-
-    public void resetConfig() {
-        path = "";
-        admin = "";
-        maxSize = "";
-        maxNumOfFiles = "";
-        unsupportedFiles = new ArrayList<>();
     }
 
     public String getPath() {

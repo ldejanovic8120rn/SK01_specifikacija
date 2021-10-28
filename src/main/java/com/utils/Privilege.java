@@ -9,5 +9,5 @@ package com.utils;
 public enum Privilege {
     ADMIN,
     RDCD,
-    RD,
+    RO,
 }

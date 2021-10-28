@@ -5,7 +5,14 @@ public class StorageInfo {
     private Config config;
     private User user;
 
-    private StorageInfo() {}
+    private StorageInfo() {
+        init();
+    }
+
+    public void init() {
+        config = new Config();
+        user = new User();
+    }
 
     private static final class StorageInfoHolder {
         static final StorageInfo storageInfo = new StorageInfo();
@@ -13,6 +20,20 @@ public class StorageInfo {
 
     public static StorageInfo getStorageInfo() {
         return StorageInfoHolder.storageInfo;
+    }
+
+    public boolean checkUser(Privilege... privileges) {
+        if (!getUser().isLogged()) {
+            return false;
+        }
+
+        for (Privilege privilege: privileges) {
+            if (user.getPrivilege() == privilege) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public Config getConfig() {
