@@ -11,39 +11,27 @@ public abstract class Storage {
 
     public abstract File getConfig(String path);
     public abstract File getUsers(String path);
-    public abstract void createStorage(String path, String storageName);
-    public abstract void saveConfig(String path, File config);
-    public abstract void saveUsers(String path, File users);
-
-    public void createStorage(String path, String storageName, String name, String password) {
-        createStorage(path, storageName);
-
-        // TODO - kreitati users.json i config.json
-        File config = null;
-        File users = null;
-
-        saveConfig(path + "/" + storageName, config);
-        saveUsers(path + "/" + storageName, users);
-
-    }
+    public abstract void createStorage(String path, String storageName, String adminName, String adminPsw);
+    public abstract void editConfig(String path, String maxSize, String maxNumOfFiles, List<String> unsupportedFiles);
+    public abstract void editUsers(String path, String name, String password, Privilege privilege);
 
     public void addUser(String name, String password, Privilege privilege) {
         if(User.getUser().getPrivilege() != Privilege.ADMIN){
+            // TODO - exception - nema privilegiju
             return;
         }
 
-        File users = getUsers(Config.getConfig().getPath());
-        // TODO - uneti novog user-a u users.json
-        saveUsers(Config.getConfig().getPath(), users);
+        // A/A1/MyStorage
+        editUsers(Config.getConfig().getPath(), name, password, privilege);
     }
 
     public void configure(String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) {
         if(User.getUser().getPrivilege() != Privilege.ADMIN){
+            // TODO - exception - nema privilegiju
             return;
         }
 
-        File config = getConfig(Config.getConfig().getPath());
-        // TODO - korigovati config.json u zavisnosti od parametara
+        editConfig(Config.getConfig().getPath(), maxSize, maxNumOfFiles, unsupportedFiles);
         Config.getConfig().changeConfig(maxSize, maxNumOfFiles, unsupportedFiles);
     }
 
@@ -57,7 +45,7 @@ public abstract class Storage {
         }
 
         readConfig(config);
-        readUsers(users);
+        readUsers(users, name, password);
     }
 
     public void logOut() {
@@ -66,11 +54,11 @@ public abstract class Storage {
     }
 
     public void readConfig(File config) {
-        // TODO initConfig()
+        // TODO initConfig() - iscitati config.json i inisijalizovati Config klasu
     }
 
-    public void readUsers(File users) {
-        // TODO logIn()
+    public void readUsers(File users, String name, String password) {
+        // TODO logIn() - iscitati users.json i proveriti da li se nalazi user sa zadatim kredencijalima i inicijalizovati User klasu
     }
 
 }

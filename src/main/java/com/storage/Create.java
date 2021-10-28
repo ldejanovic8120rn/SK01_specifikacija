@@ -13,7 +13,7 @@ public abstract class Create {
     public void createDirectory(String path, String directoryName) {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
 
-        if (path == null || path.equals("")){
+        if (path == null || path.equals("")){  //ako korisnik ne zada path, smesta se u root dir
             saveDirectory(Config.getConfig().getPath(), directoryName);
         }
         else {
@@ -24,7 +24,7 @@ public abstract class Create {
     public void createDirectories(String path, List<String> directoryNames) {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
 
-        if (path == null || path.equals("")) {
+        if (path == null || path.equals("")) {  //ako korisnik ne zada path, smesta se u root dir
             for (String directoryName: directoryNames) {
                 saveDirectory(Config.getConfig().getPath(), directoryName);
             }
@@ -39,7 +39,7 @@ public abstract class Create {
     public void createFile(String path, String fileName) {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
 
-        if (path == null || path.equals("")) {
+        if (path == null || path.equals("")) {  //ako korisnik ne zada path, smesta se u root dir
             saveFile(Config.getConfig().getPath(), fileName);
         }
         else {
@@ -50,7 +50,7 @@ public abstract class Create {
     public void createFiles(String path, List<String> fileNames) {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
 
-        if (path == null || path.equals("")){
+        if (path == null || path.equals("")) {  //ako korisnik ne zada path, smesta se u root dir
             for (String fileName: fileNames) {
                 saveFile(Config.getConfig().getPath(), fileName);
             }

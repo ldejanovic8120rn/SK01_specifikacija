@@ -13,7 +13,7 @@ public abstract class Delete {
     public void removeDirectory(String path, String directoryName) {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
 
-        if (path == null || path.equals("")){
+        if (path == null || path.equals("")){  //ako korisnik ne zada path, brise se iz root dir
             deleteDirectory(Config.getConfig().getPath(), directoryName);
         }
         else {
@@ -24,7 +24,7 @@ public abstract class Delete {
     public void removeDirectories(String path, List<String> directoryNames) {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
 
-        if (path == null || path.equals("")) {
+        if (path == null || path.equals("")) {  //ako korisnik ne zada path, brise se iz root dir
             for (String directoryName: directoryNames) {
                 deleteDirectory(Config.getConfig().getPath(), directoryName);
             }
@@ -39,7 +39,7 @@ public abstract class Delete {
     public void removeFile(String path, String fileName) {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
 
-        if (path == null || path.equals("")) {
+        if (path == null || path.equals("")) {  //ako korisnik ne zada path, brise se iz root dir
             deleteFile(Config.getConfig().getPath(), fileName);
         }
         else {
@@ -50,7 +50,7 @@ public abstract class Delete {
     public void removeFiles(String path, List<String> fileNames) {
         // TODO - proveriti da li je korisnig ulogovan i da li ima privilegije
 
-        if (path == null || path.equals("")){
+        if (path == null || path.equals("")){  //ako korisnik ne zada path, brise se iz root dir
             for (String fileName: fileNames) {
                 deleteFile(Config.getConfig().getPath(), fileName);
             }

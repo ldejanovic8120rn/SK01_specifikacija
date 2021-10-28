@@ -33,7 +33,7 @@ public class Config {
         this.unsupportedFiles = new ArrayList<>(unsupportedFiles);
     }
 
-    public void changeConfig(String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) throws NumberFormatException{
+    public void changeConfig(String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) throws NumberFormatException {
         if (maxSize != null) {
             Double.parseDouble(maxSize);
             this.maxSize = maxSize;
