@@ -1,10 +1,14 @@
 package com.storage;
 
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import com.utils.Config;
 import com.utils.Privilege;
 import com.utils.User;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.List;
 
 public abstract class Storage {
@@ -54,6 +58,17 @@ public abstract class Storage {
     }
 
     public void readConfig(File config) {
+
+        Gson gson = new Gson();
+        JsonReader reader = null;
+        try {
+            reader = new JsonReader(new FileReader(config));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Review data = gson.fromJson(reader, Review.class);
+        data.toScreen(); // prints to screen some values
+
         // TODO initConfig() - iscitati config.json i inisijalizovati Config klasu
     }
 
