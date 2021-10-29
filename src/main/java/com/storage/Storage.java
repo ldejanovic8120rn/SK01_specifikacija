@@ -90,11 +90,12 @@ public abstract class Storage {
             ex.printStackTrace();
         }
         finally {
-            try {
-                reader.close();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
+            if(reader != null){
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
