@@ -31,19 +31,23 @@ public abstract class Storage {
     }
 
     public void configure(String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) throws Exception {
-        if(StorageInfo.getStorageInfo().getUser().getPrivilege() != Privilege.ADMIN){
+        if(StorageInfo.getStorageInfo().getUser().getPrivilege() != Privilege.ADMIN) {
             throw new Exception("Korisnik nije logovan ili nema privilegiju");
         }
 
+//        String[] extentions = new String[unsupportedFiles.size()];
+//        extentions = unsupportedFiles.toArray(extentions);
+
         editConfig(StorageInfo.getStorageInfo().getConfig().getPath(), maxSize, maxNumOfFiles, unsupportedFiles);
-        StorageInfo.getStorageInfo().getConfig().changeConfig(maxSize, maxNumOfFiles, unsupportedFiles);
+        //StorageInfo.getStorageInfo().getConfig().changeConfig(maxSize, maxNumOfFiles, extentions);
+        readConfig(getConfig(StorageInfo.getStorageInfo().getConfig().getPath()));
     }
 
     public void logToStorage(String path, String name, String password) throws Exception {
         File config = getConfig(path);
         File users = getUsers(path);
 
-        if (config == null || users == null){
+        if (config == null || users == null) {
             throw new Exception("Nije definisano skladiste");
         }
 
@@ -63,6 +67,7 @@ public abstract class Storage {
             Config config = gson.fromJson(reader, Config.class);
 
             StorageInfo.getStorageInfo().setConfig(config);
+            reader.close();
         }
         catch (IOException e) {
             e.printStackTrace();
