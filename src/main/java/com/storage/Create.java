@@ -8,6 +8,10 @@ import java.util.List;
 public abstract class Create {
 
     // root -> A -> A1 -> file.txt
+    /**
+     * @param path putanja do fajla
+     * @param directoryName ime direktorijuma
+     **/
     public abstract void saveDirectory(String path, String directoryName);
     public abstract void saveFile(String path, String fileName);
 
