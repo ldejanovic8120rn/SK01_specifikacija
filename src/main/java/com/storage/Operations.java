@@ -14,18 +14,19 @@ public abstract class Operations {
     public abstract List<FileMetadata> getAllFiles(String path);
     public abstract List<FileMetadata> getAllDirectories(String path);
     public abstract List<FileMetadata> getAllFilesRecursive(String path);
-    public abstract void uploadFile();
-    public abstract void moveFile(String fromPath, String toPath, String fileName);
+    public abstract void download(String path);
+    public abstract void uploadFile(String fromPath, String toPath);
+    public abstract void moveFile(String fromPath, String toPath);
 
-    public void moveFiles(String fromPath, String toPath, List<String> fileNames) throws Exception {
-        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
-            throw new Exception("Korisnik nije logovan ili nema privilegiju");
-        }
-
-        for(String fileName: fileNames) {
-            moveFile(fromPath, toPath, fileName);
-        }
-    }
+//    public void moveFiles(String fromPath, String toPath, List<String> fileNames) throws Exception {
+//        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
+//            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+//        }
+//
+//        for(String fileName: fileNames) {
+//            moveFile(fromPath, toPath, fileName);
+//        }
+//    }
 
     public List<FileMetadata> getAllFilesWithExtention(List<FileMetadata> files, String extention) {
         // TODO - ako ne radi izbacivanje zadate ekstenzije

@@ -36,6 +36,11 @@ public class StorageInfo {
         return false;
     }
 
+    public boolean checkPath(String path) {
+        // TODO - proveriti da li se za zadatu putanju nalazi fajl u skladistu
+        return true;
+    }
+
     public Config getConfig() {
         return config;
     }
