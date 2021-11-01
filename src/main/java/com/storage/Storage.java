@@ -22,11 +22,10 @@ public abstract class Storage {
     public abstract void editUsers(String path, String name, String password, Privilege privilege);
 
     public void addUser(String name, String password, Privilege privilege) throws Exception {
-        if(StorageInfo.getStorageInfo().getUser().getPrivilege() != Privilege.ADMIN){
+        if(StorageInfo.getStorageInfo().getUser().getPrivilege() != Privilege.ADMIN) {
             throw new Exception("Korisnik nije logovan ili nema privilegiju");
         }
 
-        // A/A1/MyStorage
         editUsers(StorageInfo.getStorageInfo().getConfig().getPath(), name, password, privilege);
     }
 
@@ -35,14 +34,11 @@ public abstract class Storage {
             throw new Exception("Korisnik nije logovan ili nema privilegiju");
         }
 
-//        String[] extentions = new String[unsupportedFiles.size()];
-//        extentions = unsupportedFiles.toArray(extentions);
         boolean arg1 = StorageInfo.getStorageInfo().getConfig().checkArgs(maxSize);
         boolean arg2 = StorageInfo.getStorageInfo().getConfig().checkArgs(maxNumOfFiles);
 
         if (arg1 && arg2) {
             editConfig(StorageInfo.getStorageInfo().getConfig().getPath(), maxSize, maxNumOfFiles, unsupportedFiles);
-            //StorageInfo.getStorageInfo().getConfig().changeConfig(maxSize, maxNumOfFiles, extentions);
             readConfig(getConfig(StorageInfo.getStorageInfo().getConfig().getPath()));
         }
 

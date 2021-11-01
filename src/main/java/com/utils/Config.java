@@ -8,8 +8,6 @@ import java.util.List;
  *
  **/
 
-// TODO NAPOMENA - paziti na null vrednosti polja
-
 public class Config {
 
     private String path;
@@ -40,44 +38,13 @@ public class Config {
         }
 
         try {
-            double d = Double.parseDouble(strNum);
+            Long.parseLong(strNum);
         }
         catch (NumberFormatException nfe) {
             return false;
         }
         return true;
     }
-
-//    public void changeConfig(String maxSize, String maxNumOfFiles, String... extentions) throws NumberFormatException {
-//        if (maxSize != null) {
-//            if (maxSize.equalsIgnoreCase("un")) {
-//                this.maxSize = "";
-//            }
-//            else {
-//                Double.parseDouble(maxSize);
-//                this.maxSize = maxSize;
-//            }
-//        }
-//
-//        if(maxNumOfFiles != null){
-//            if (maxNumOfFiles.equalsIgnoreCase("un")) {
-//                this.maxNumOfFiles = "";
-//            }
-//            else {
-//                Double.parseDouble(maxNumOfFiles);
-//                this.maxNumOfFiles = maxNumOfFiles;
-//            }
-//        }
-//
-//        if(extentions != null) {
-//            if (extentions.length == 1 && extentions[0].equalsIgnoreCase("un")) {
-//                this.unsupportedFiles.clear();
-//            }
-//            else {
-//                this.unsupportedFiles.addAll(Arrays.asList(extentions));
-//            }
-//        }
-//    }
 
     public String getPath() {
         return path;

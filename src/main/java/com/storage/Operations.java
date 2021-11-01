@@ -17,23 +17,12 @@ public abstract class Operations {
     public abstract void uploadFile(String fromPath, String toPath) throws Exception;
     public abstract void moveFile(String fromPath, String toPath) throws Exception;
 
-//    public void moveFiles(String fromPath, String toPath, List<String> fileNames) throws Exception {
-//        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
-//            throw new Exception("Korisnik nije logovan ili nema privilegiju");
-//        }
-//
-//        for(String fileName: fileNames) {
-//            moveFile(fromPath, toPath, fileName);
-//        }
-//    }
-
     public List<FileMetadata> getAllFilesWithExtention(List<FileMetadata> files, String extention) {
         // TODO - ako ne radi izbacivanje zadate ekstenzije
         files.removeIf(file -> !file.getName().endsWith(extention));
         return files;
     }
 
-    // criteria - naziv, datum kreiranja i modifikacija
     public List<FileMetadata> getSortedBy(List<FileMetadata> files, String criteria) {
         if (criteria.equals("sortByName")) {
             sortByName(files);
