@@ -10,13 +10,12 @@ import java.util.List;
 
 public abstract class Operations {
 
-    // TODO - Za sve metode proveriti da li je user logovan
-    public abstract List<FileMetadata> getAllFiles(String path);
-    public abstract List<FileMetadata> getAllDirectories(String path);
-    public abstract List<FileMetadata> getAllFilesRecursive(String path);
-    public abstract void download(String path);
-    public abstract void uploadFile(String fromPath, String toPath);
-    public abstract void moveFile(String fromPath, String toPath);
+    public abstract List<FileMetadata> getAllFiles(String path) throws Exception;
+    public abstract List<FileMetadata> getAllDirectories(String path) throws Exception;
+    public abstract List<FileMetadata> getAllFilesRecursive(String path) throws Exception;
+    public abstract void download(String path) throws Exception;
+    public abstract void uploadFile(String fromPath, String toPath) throws Exception;
+    public abstract void moveFile(String fromPath, String toPath) throws Exception;
 
 //    public void moveFiles(String fromPath, String toPath, List<String> fileNames) throws Exception {
 //        if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {

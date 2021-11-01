@@ -34,6 +34,20 @@ public class Config {
         this.unsupportedFiles = new ArrayList<>(unsupportedFiles);
     }
 
+    public boolean checkArgs(String strNum) {
+        if (strNum == null || strNum.equals("UN")) {
+            return true;
+        }
+
+        try {
+            double d = Double.parseDouble(strNum);
+        }
+        catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
 //    public void changeConfig(String maxSize, String maxNumOfFiles, String... extentions) throws NumberFormatException {
 //        if (maxSize != null) {
 //            if (maxSize.equalsIgnoreCase("un")) {

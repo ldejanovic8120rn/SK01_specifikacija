@@ -1,12 +1,9 @@
 package com.utils;
 
-import com.storage.FileChecker;
-
 public class StorageInfo {
 
     private Config config;
     private User user;
-    private FileChecker fileChecker;
 
     private StorageInfo() {
         init();
@@ -37,16 +34,6 @@ public class StorageInfo {
         }
 
         return false;
-    }
-
-    public boolean checkPath(String path) {
-        // TODO - proveriti da li se za zadatu putanju nalazi fajl u skladistu
-
-        //TODO - napraviti FileChecker klasu koja ce da ima sve potrebne provere na apstraktnom nivou
-            //npr provera max broja fajlova, provera dozvoljenih ekstenzija, itd
-        //TODO - tamo prebaciti i ovu metodu (checkPath)
-
-        return true;
     }
 
     public Config getConfig() {

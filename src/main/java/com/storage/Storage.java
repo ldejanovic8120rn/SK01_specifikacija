@@ -17,7 +17,7 @@ public abstract class Storage {
 
     public abstract File getConfig(String path);
     public abstract File getUsers(String path);
-    public abstract void createStorage(String path, String storageName, String adminName, String adminPsw);
+    public abstract void createStorage(String path, String storageName, String adminName, String adminPsw) throws Exception;
     public abstract void editConfig(String path, String maxSize, String maxNumOfFiles, List<String> unsupportedFiles);
     public abstract void editUsers(String path, String name, String password, Privilege privilege);
 
@@ -37,10 +37,15 @@ public abstract class Storage {
 
 //        String[] extentions = new String[unsupportedFiles.size()];
 //        extentions = unsupportedFiles.toArray(extentions);
+        boolean arg1 = StorageInfo.getStorageInfo().getConfig().checkArgs(maxSize);
+        boolean arg2 = StorageInfo.getStorageInfo().getConfig().checkArgs(maxNumOfFiles);
 
-        editConfig(StorageInfo.getStorageInfo().getConfig().getPath(), maxSize, maxNumOfFiles, unsupportedFiles);
-        //StorageInfo.getStorageInfo().getConfig().changeConfig(maxSize, maxNumOfFiles, extentions);
-        readConfig(getConfig(StorageInfo.getStorageInfo().getConfig().getPath()));
+        if (arg1 && arg2) {
+            editConfig(StorageInfo.getStorageInfo().getConfig().getPath(), maxSize, maxNumOfFiles, unsupportedFiles);
+            //StorageInfo.getStorageInfo().getConfig().changeConfig(maxSize, maxNumOfFiles, extentions);
+            readConfig(getConfig(StorageInfo.getStorageInfo().getConfig().getPath()));
+        }
+
     }
 
     public void logToStorage(String path, String name, String password) throws Exception {
