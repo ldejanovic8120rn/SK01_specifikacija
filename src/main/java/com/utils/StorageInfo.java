@@ -1,9 +1,12 @@
 package com.utils;
 
+import com.storage.FileChecker;
+
 public class StorageInfo {
 
     private Config config;
     private User user;
+    private FileChecker fileChecker;
 
     private StorageInfo() {
         init();
