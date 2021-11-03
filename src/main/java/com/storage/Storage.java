@@ -15,11 +15,11 @@ import java.util.List;
 
 public abstract class Storage {
 
-    public abstract File getConfig(String path);
-    public abstract File getUsers(String path);
+    public abstract File getConfig(String path) throws Exception;
+    public abstract File getUsers(String path) throws Exception;
     public abstract void createStorage(String path, String storageName, String adminName, String adminPsw) throws Exception;
-    public abstract void editConfig(String path, String maxSize, String maxNumOfFiles, List<String> unsupportedFiles);
-    public abstract void editUsers(String path, String name, String password, Privilege privilege);
+    public abstract void editConfig(String path, String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) throws Exception;
+    public abstract void editUsers(String path, String name, String password, Privilege privilege) throws Exception;
 
     public void addUser(String name, String password, Privilege privilege) throws Exception {
         if(StorageInfo.getStorageInfo().getUser().getPrivilege() != Privilege.ADMIN) {

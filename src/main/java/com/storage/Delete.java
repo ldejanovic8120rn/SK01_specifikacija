@@ -7,9 +7,9 @@ import java.util.List;
 
 public abstract class Delete {
 
-    public abstract void deleteDirectory(String directoryName);
-    public abstract void deleteFile(String fileName);
-    public abstract void deleteAll(String rootPath);
+    public abstract void deleteDirectory(String directoryName) throws Exception;
+    public abstract void deleteFile(String fileName) throws Exception;
+    public abstract void deleteAll(String rootPath) throws Exception;
 
     public void removeDirectory(String directoryName) throws Exception {
         if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
