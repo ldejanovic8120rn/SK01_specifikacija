@@ -25,4 +25,9 @@ public class FileMetadata {
     public Date getModificationDate() {
         return modificationDate;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
