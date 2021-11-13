@@ -11,7 +11,6 @@ public abstract class Create {
     public abstract void saveDirectory(String directoryName) throws Exception;
     public abstract void saveFile(String fileName) throws Exception;
 
-    // createDir pathToStorage.../A/A1/nesto
     public void createDirectory(String directoryName) throws Exception {
         if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
             throw new LogException("User isn't logged or doen't have permission");
