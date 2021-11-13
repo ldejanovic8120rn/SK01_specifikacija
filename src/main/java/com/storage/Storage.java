@@ -39,6 +39,10 @@ public abstract class Storage {
         boolean arg1 = StorageInfo.getStorageInfo().getConfig().checkArgs(maxSize);
         boolean arg2 = StorageInfo.getStorageInfo().getConfig().checkArgs(maxNumOfFiles);
 
+        if (unsupportedFiles != null) {
+            unsupportedFiles.addAll(StorageInfo.getStorageInfo().getConfig().getUnsupportedFiles());
+        }
+
         if (arg1 && arg2) {
             editConfig(StorageInfo.getStorageInfo().getConfig().getPath(), maxSize, maxNumOfFiles, unsupportedFiles);
             readConfig(getConfig(StorageInfo.getStorageInfo().getConfig().getPath()));
