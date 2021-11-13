@@ -4,6 +4,7 @@ import com.exception.ConfigException;
 import com.exception.LogException;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import com.utils.Config;
 import com.utils.Privilege;
 import com.utils.StorageInfo;
@@ -87,7 +88,9 @@ public abstract class Storage {
         try {
             Gson gson = new Gson();
             reader = new FileReader(usersFile);
-            List<User> users = gson.fromJson(reader, new TypeToken<List<User>>() {}.getType());
+            JsonReader jsonReader = new JsonReader(reader);
+            jsonReader.setLenient(true);
+            List<User> users = gson.fromJson(jsonReader, new TypeToken<List<User>>() {}.getType());
 
             for (User user: users) {
                 if (user.getName().equals(name) && user.getPassword().equals(password)) {
