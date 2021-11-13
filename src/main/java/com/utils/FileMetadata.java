@@ -28,6 +28,6 @@ public class FileMetadata {
 
     @Override
     public String toString() {
-        return name;
+        return name + " " + creationDate + " " + modificationDate;
     }
 }
