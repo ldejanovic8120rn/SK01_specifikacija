@@ -1,5 +1,7 @@
 package com.storage;
 
+import com.exception.ConfigException;
+import com.exception.LogException;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.utils.Config;
@@ -23,7 +25,7 @@ public abstract class Storage {
 
     public void addUser(String name, String password, Privilege privilege) throws Exception {
         if(StorageInfo.getStorageInfo().getUser().getPrivilege() != Privilege.ADMIN) {
-            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+            throw new LogException("User isn't logged or doen't have permission");
         }
 
         editUsers(StorageInfo.getStorageInfo().getConfig().getPath(), name, password, privilege);
@@ -31,7 +33,7 @@ public abstract class Storage {
 
     public void configure(String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) throws Exception {
         if(StorageInfo.getStorageInfo().getUser().getPrivilege() != Privilege.ADMIN) {
-            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+            throw new LogException("User isn't logged or doen't have permission");
         }
 
         boolean arg1 = StorageInfo.getStorageInfo().getConfig().checkArgs(maxSize);
@@ -49,7 +51,7 @@ public abstract class Storage {
         File users = getUsers(path);
 
         if (config == null || users == null) {
-            throw new Exception("Nije definisano skladiste");
+            throw new ConfigException("Storage not defined");
         }
 
         readConfig(config);

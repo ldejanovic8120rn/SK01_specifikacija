@@ -1,5 +1,6 @@
 package com.storage;
 
+import com.exception.LogException;
 import com.utils.Privilege;
 import com.utils.StorageInfo;
 
@@ -13,7 +14,7 @@ public abstract class Create {
     // createDir pathToStorage.../A/A1/nesto
     public void createDirectory(String directoryName) throws Exception {
         if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
-            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+            throw new LogException("User isn't logged or doen't have permission");
         }
 
         saveDirectory(directoryName);
@@ -21,7 +22,7 @@ public abstract class Create {
 
     public void createDirectories(List<String> directoryNames) throws Exception {
         if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
-            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+            throw new LogException("User isn't logged or doen't have permission");
         }
 
         for (String directoryName: directoryNames) {
@@ -31,7 +32,7 @@ public abstract class Create {
 
     public void createFile(String fileName) throws Exception {
         if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
-            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+            throw new LogException("User isn't logged or doen't have permission");
         }
 
         saveFile(fileName);
@@ -39,7 +40,7 @@ public abstract class Create {
 
     public void createFiles(List<String> fileNames) throws Exception {
         if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
-            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+            throw new LogException("User isn't logged or doen't have permission");
         }
 
         for (String fileName: fileNames) {

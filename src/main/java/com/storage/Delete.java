@@ -1,5 +1,6 @@
 package com.storage;
 
+import com.exception.LogException;
 import com.utils.Privilege;
 import com.utils.StorageInfo;
 
@@ -13,7 +14,7 @@ public abstract class Delete {
 
     public void removeDirectory(String directoryName) throws Exception {
         if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
-            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+            throw new LogException("User isn't logged or doen't have permission");
         }
 
         deleteDirectory(directoryName);
@@ -21,7 +22,7 @@ public abstract class Delete {
 
     public void removeDirectories(List<String> directoryNames) throws Exception {
         if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
-            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+            throw new LogException("User isn't logged or doen't have permission");
         }
 
         for (String directoryName: directoryNames) {
@@ -32,7 +33,7 @@ public abstract class Delete {
 
     public void removeFile(String fileName) throws Exception {
         if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
-            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+            throw new LogException("User isn't logged or doen't have permission");
         }
 
         deleteFile(fileName);
@@ -40,7 +41,7 @@ public abstract class Delete {
 
     public void removeFiles(List<String> fileNames) throws Exception {
         if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
-            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+            throw new LogException("User isn't logged or doen't have permission");
         }
 
         for (String fileName: fileNames) {
@@ -50,7 +51,7 @@ public abstract class Delete {
 
     public void removeAll() throws Exception {
         if (!StorageInfo.getStorageInfo().checkUser(Privilege.ADMIN, Privilege.RDCD)) {
-            throw new Exception("Korisnik nije logovan ili nema privilegiju");
+            throw new LogException("User isn't logged or doen't have permission");
         }
 
         deleteAll(StorageInfo.getStorageInfo().getConfig().getPath());
