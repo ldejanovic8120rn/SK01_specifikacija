@@ -62,7 +62,7 @@ public abstract class Storage {
         StorageInfo.getStorageInfo().init();
     }
 
-    public void readConfig(File configFile) {
+    private void readConfig(File configFile) {
         Gson gson = new Gson();
 
         try {
@@ -77,7 +77,7 @@ public abstract class Storage {
         }
     }
 
-    public void readUsers(File usersFile, String name, String password) {
+    private void readUsers(File usersFile, String name, String password) {
         Reader reader = null;
 
         try {
