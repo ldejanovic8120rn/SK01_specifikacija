@@ -7,10 +7,36 @@ package com.storage;
  */
 public abstract class FileChecker {
 
-    public abstract boolean ckeckPath(String path);  //postojanje fajla van skladista
-    public abstract boolean ckeckStoragePath(String path);  //u skladistu putanje
+    /**
+     * Method that checks if given path exists. The path is path outside of current storage.
+     * @param path Path outside of storage
+     * @return true if path exists, false if it doesn't
+     */
+    public abstract boolean ckeckPath(String path);
+
+    /**
+     * Method that checks if given path exists within the storage.
+     * @param path Path within storage
+     * @return true if path exists, false if it doesn't
+     */
+    public abstract boolean ckeckStoragePath(String path);
+
+    /**
+     * Method that checks if file number limit is exceeded.
+     * @return true if it isn't, false if it is
+     */
     public abstract boolean checkNumOfFiles();
+
+    /**
+     * Method that checks if storage size limit is exceeded.
+     * @return true if it isn't, false if it is
+     */
     public abstract boolean checkMaxSize(long size);
+
+    /**
+     * Method that checks if file extension is allowed.
+     * @return true if it is, false if it isn't
+     */
     public abstract boolean ckeckExtention(String extension);
 
 }

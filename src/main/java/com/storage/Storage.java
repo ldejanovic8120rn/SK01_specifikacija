@@ -23,12 +23,59 @@ import java.util.List;
  */
 public abstract class Storage {
 
+    /**
+     * Method that gets Config file in storage
+     * @param path Storage path
+     * @return Config file
+     * @throws Exception
+     */
     public abstract File getConfig(String path) throws Exception;
+
+    /**
+     * Method that gets Users file in storage
+     * @param path Storage path
+     * @return Users file
+     * @throws Exception
+     */
     public abstract File getUsers(String path) throws Exception;
+
+    /**
+     * Method that creates a new storage
+     * @param path Path to new storage
+     * @param storageName New storage name
+     * @param adminName Storage admin username
+     * @param adminPsw Storage adnim password
+     * @throws Exception if user isn't logged
+     */
     public abstract void createStorage(String path, String storageName, String adminName, String adminPsw) throws Exception;
+
+    /**
+     * Method that changes Config file
+     * @param path Storage path
+     * @param maxSize Storage size limit
+     * @param maxNumOfFiles Storage file number limit
+     * @param unsupportedFiles Storage unsupported file exceptions
+     * @throws Exception if Config file can't be read
+     */
     public abstract void editConfig(String path, String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) throws Exception;
+
+    /**
+     * Method that adds new user to Users file
+     * @param path Storage path
+     * @param name New user's username
+     * @param password New user's password
+     * @param privilege New user's privilege level
+     * @throws Exception if Users file can't be read
+     */
     public abstract void editUsers(String path, String name, String password, Privilege privilege) throws Exception;
 
+    /**
+     * Method that adds new user to storage.
+     * @param name New user's name
+     * @param password New user's password
+     * @param privilege New user's privilege level
+     * @throws Exception if user doesn't have ADMIN privilege
+     */
     public void addUser(String name, String password, Privilege privilege) throws Exception {
         if(StorageInfo.getStorageInfo().getUser().getPrivilege() != Privilege.ADMIN) {
             throw new LogException("User isn't logged or doen't have permission");
@@ -37,6 +84,13 @@ public abstract class Storage {
         editUsers(StorageInfo.getStorageInfo().getConfig().getPath(), name, password, privilege);
     }
 
+    /**
+     * Method that configures storage settings.
+     * @param maxSize New storage size limit
+     * @param maxNumOfFiles New storage file number limit
+     * @param unsupportedFiles New storage unsupported file extension(s)
+     * @throws Exception if user doesn't have ADMIN privilege
+     */
     public void configure(String maxSize, String maxNumOfFiles, List<String> unsupportedFiles) throws Exception {
         if(StorageInfo.getStorageInfo().getUser().getPrivilege() != Privilege.ADMIN) {
             throw new LogException("User isn't logged or doen't have permission");
@@ -56,6 +110,13 @@ public abstract class Storage {
 
     }
 
+    /**
+     * Method that logs user to storage.
+     * @param path Storage path
+     * @param name User's username
+     * @param password User's password
+     * @throws Exception if storage doesn't exist
+     */
     public void logToStorage(String path, String name, String password) throws Exception {
         File config = getConfig(path);
         File users = getUsers(path);
@@ -68,6 +129,9 @@ public abstract class Storage {
         readUsers(users, name, password);
     }
 
+    /**
+     * Method that logs out current user.
+     */
     public void logOut() {
         StorageInfo.getStorageInfo().init();
     }
