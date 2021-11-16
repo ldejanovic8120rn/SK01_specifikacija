@@ -6,6 +6,11 @@ import com.utils.StorageInfo;
 
 import java.util.List;
 
+/**
+ * Class that is used for deleting files and directories.
+ * @author Lazar Dejanovic
+ * @author Vuk Vukovic
+ */
 public abstract class Delete {
 
     public abstract void deleteDirectory(String directoryName) throws Exception;

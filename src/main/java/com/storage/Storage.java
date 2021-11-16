@@ -16,6 +16,11 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
+/**
+ * Class that is used for initialising Storage.
+ * @author Lazar Dejanovic
+ * @author Vuk Vukovic
+ */
 public abstract class Storage {
 
     public abstract File getConfig(String path) throws Exception;

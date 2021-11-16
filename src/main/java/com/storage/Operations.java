@@ -8,6 +8,11 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Class that is used for various file actions such as moving, uploading, downloading, sorting.
+ * @author Lazar Dejanovic
+ * @author Vuk Vukovic
+ */
 public abstract class Operations {
 
     public abstract List<FileMetadata> getAllFiles(String path) throws Exception;

@@ -6,6 +6,11 @@ import com.utils.StorageInfo;
 
 import java.util.List;
 
+/**
+ * Class that is used for creating files and directories.
+ * @author Lazar Dejanovic
+ * @author Vuk Vukovic
+ */
 public abstract class Create {
 
     public abstract void saveDirectory(String directoryName) throws Exception;

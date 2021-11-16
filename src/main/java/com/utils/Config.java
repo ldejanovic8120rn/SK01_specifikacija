@@ -5,9 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
- **/
-
+ * Class that is used for storing config data for current storage.
+ * @author Lazar Dejanovic
+ * @author Vuk Vukovic
+ */
 public class Config {
 
     private String path;
