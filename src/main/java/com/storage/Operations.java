@@ -73,7 +73,6 @@ public abstract class Operations {
      * @see FileMetadata
      */
     public List<FileMetadata> getAllFilesWithExtention(List<FileMetadata> files, String extention) {
-        // TODO - ako ne radi izbacivanje zadate ekstenzije
         files.removeIf(file -> !file.getName().endsWith(extention));
         return files;
     }
@@ -139,14 +138,7 @@ public abstract class Operations {
     }
 
     private void sortByName(List<FileMetadata> files) {
-        // TODO - ako ne radi sortiranje
         files.sort(Comparator.comparing(FileMetadata::getName));
-//        files.sort(new Comparator<FileMetadata>() {
-//            @Override
-//            public int compare(FileMetadata o1, FileMetadata o2) {
-//                return o1.getName().compareTo(o2.getName());
-//            }
-//        });
     }
 
     /**
