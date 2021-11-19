@@ -96,10 +96,10 @@ public abstract class Storage {
             throw new LogException("User isn't logged or doen't have permission");
         }
 
-        boolean arg1 = StorageInfo.getStorageInfo().getConfig().checkArgs(maxSize);
-        boolean arg2 = StorageInfo.getStorageInfo().getConfig().checkArgs(maxNumOfFiles);
+        boolean arg1 = StorageInfo.getStorageInfo().getConfig().checkArgs(maxSize);  //da korisnik nije uneo nesto sto nije broj
+        boolean arg2 = StorageInfo.getStorageInfo().getConfig().checkArgs(maxNumOfFiles);  //da korisnik nije uneo nesto sto nije broj
 
-        if (unsupportedFiles != null) {
+        if (unsupportedFiles != null) {  //dodajemo ekstenzije na vec postojece
             unsupportedFiles.addAll(StorageInfo.getStorageInfo().getConfig().getUnsupportedFiles());
         }
 
