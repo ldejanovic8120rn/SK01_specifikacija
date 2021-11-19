@@ -81,7 +81,7 @@ public abstract class Storage {
             throw new LogException("User isn't logged or doen't have permission");
         }
 
-        editUsers(StorageInfo.getStorageInfo().getConfig().getPath(), name, password, privilege);
+        editUsers(StorageInfo.getStorageInfo().getConfig().getPath(), name, password, privilege);  //azuriramo users.json u skladistu
     }
 
     /**
@@ -104,8 +104,8 @@ public abstract class Storage {
         }
 
         if (arg1 && arg2) {
-            editConfig(StorageInfo.getStorageInfo().getConfig().getPath(), maxSize, maxNumOfFiles, unsupportedFiles);
-            readConfig(getConfig(StorageInfo.getStorageInfo().getConfig().getPath()));
+            editConfig(StorageInfo.getStorageInfo().getConfig().getPath(), maxSize, maxNumOfFiles, unsupportedFiles);  //azuriramo config.json
+            readConfig(getConfig(StorageInfo.getStorageInfo().getConfig().getPath()));  //azuriramo config u programu
         }
 
     }
@@ -125,8 +125,8 @@ public abstract class Storage {
             throw new ConfigException("Storage not defined");
         }
 
-        readConfig(config);
-        readUsers(users, name, password);
+        readConfig(config);  //upisemo trenutni config za program
+        readUsers(users, name, password);  //upisemo trenutni users za program
     }
 
     /**
